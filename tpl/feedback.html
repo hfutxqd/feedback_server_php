@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><{$feedback['description']}></title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--<link href="css/dashboard.css" rel="stylesheet">-->
+    <!--<link href="css/bootstrap-select.min.css" rel="stylesheet">-->
+
+    <link rel="stylesheet" type="text/css" href="css/wangEditor.min.css">
+    <link rel="stylesheet" type="text/css" href="css/feedback.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">导航栏开关</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">查看反馈</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right nav-pills">
+                <li><a href="#" data-toggle="modal" data-target="#user_infor">用户信息</a></li>
+                <{if $isDev == true}>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        更改状态 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="btn">确定问题</a></li>
+                        <li><a class="btn">需进一步了解</a></li>
+                        <li><a class="btn">正在解决</a></li>
+                        <li><a class="btn">已经解决</a></li>
+                        <li><a class="btn">暂不解决</a></li>
+                        <li><a class="btn">问题无效</a></li>
+                    </ul>
+                </li>
+                <li><a href="<{spUrl c=main a=logout}>">注销</a></li>
+                <{/if}>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" id="contentBox">
+    <ul class="list-group">
+
+        <li class="list-group-item">
+            <div>内容:</div><div><{$feedback['description']}></div>
+        </li>
+        <li class="list-group-item">
+            <div>时间:</div><div><{$feedback['time']}></div>
+        </li>
+        <li class="list-group-item">
+            <div>当前状态:</div>
+            <div>
+                <{if $feedback['status']==0}>开发者还没有看呢
+                <{elseif $feedback['status']==1}>开发者已经确定
+                <{elseif $feedback['status']==2}>问题正在解决
+                <{elseif $feedback['status']==3}>问题已经解决
+                <{elseif $feedback['status']==4}>问题还需进一步了解
+                <{else}>未知状态
+                <{/if}>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div>软件名称:</div><div><{$feedback['app_title']}></div>
+        </li>
+        <li class="list-group-item">
+            <div>软件包名:</div><div><{$feedback['app_package']}></div>
+        </li>
+        <li class="list-group-item">
+            <div>软件版本:</div><div><{$feedback['app_version']}></div>
+        </li>
+        <li class="list-group-item">
+            <div>手机型号:</div><div><{$feedback['device_model']}></div>
+        </li>
+        <li class="list-group-item">
+            <div>系统版本:</div><div><{$feedback['system_version']}></div>
+        </li>
+        <li class="list-group-item">
+            <div>附件:</div><div><a href="<{$feedback['app_attachment']}>">点击下载</a></div>
+        </li>
+
+    </ul>
+    <div class="bs-callout bs-callout-info" id="comment-div">
+        <div class="cut-off-rule">
+            <b>共有<{count($replyList)}>条相关评论</b>
+        </div>
+        <{foreach from=$replyList item=reply}>
+        <div class="comment-class cut-off-rule">
+            <b>
+                <{if $reply.type == 'user'}>
+                <span class="reply_user">用户</span>
+                <{else}>
+                <span class="reply_user">开发者</span>
+                <{/if}>
+                <span class="reply_time"><{$reply.time}></span>
+            </b>
+            <br>
+            <p><{$reply.content}></p>
+        </div>
+        <{/foreach}>
+    </div>
+    <div>
+        <div id="comment_content" style="height: 300px;" class="form-control" name="comment"></div>
+        <br/>
+        <input type="submit" value="评论" id="submit" class="btn btn-primary btn-lg col-md-1 col-md-push-11">
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="user_infor" tabindex="-1" role="dialog" aria-labelledby="user_infor">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <li class="list-group-item">
+
+                    <div>用户邮箱:</div><div><{$feedback['user_email']}></div>
+                </li>
+                <li class="list-group-item">
+                    <div>QQ号码:</div><div><{$feedback['user_qq']}></div>
+                </li>
+                <li class="list-group-item">
+                    <div>IP地址:</div><div><{$feedback['user_ip']}></div>
+                </li>
+                <li class="list-group-item">
+                    <div>用户地区:</div><div id="ip_region"></div>
+                </li>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/dot/1.0.3/doT.min.js"></script>
+<script type="text/javascript" src='js/wangEditor.min.js'></script>
+<script src="js/simply-toast.min.js"></script>
+<script type="text/x-dot-template" id="comment">
+    <div class="cut-off-rule">
+        <b>共有{{=it.data.length}}条相关评论</b>
+    </div>
+    {{~it.data:value:index}}
+    <div class="comment-class cut-off-rule">
+        <b>
+            {{? value.type == 'user'}}
+            <span class="reply_user">用户</span>
+            {{?}}
+            {{? value.type == 'developer'}}
+            <span class="reply_user">开发者</span>
+            {{?}}
+            <span class="reply_time">{{= value.time }}</span>
+        </b>
+        <br>
+        <p>{{= value.content }}</p>
+    </div>
+    {{~}}
+</script>
+<script>
+    var ver = "<{$feedback['ver']}>";
+    var id = "<{$feedback['id']}>";
+    var ip = "<{$feedback['user_ip']}>";
+    $.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip="+ip
+            ,function()
+            {
+                if(remote_ip_info.ret==1)
+                {
+                    var c = remote_ip_info.country,//国家
+                            p=remote_ip_info.province,//省份
+                            i=remote_ip_info.city,//城市
+                            d=remote_ip_info.desc,//详细
+                            s=c+''+p+'省'+i+'市'+d;
+                }
+                else
+                {
+                    var s=ip+'信息无法查询';
+                }
+                $('#ip_region').html(s);
+            });
+
+    var editor = new wangEditor('comment_content');
+    editor.config.uploadImgUrl = "<{spUrl c=api a=image}>";
+    editor.create();
+
+    var interText = doT.template($("#comment").text());
+
+    function getComments() {
+        var data = {
+            'id':id,
+            'ver':ver
+        }
+        $.ajax({
+            type:"GET",
+            url:'<{spUrl c=api a=get_comment}>',
+            data:data,
+            dateType:"text",
+            success:
+                function(result)
+                {
+                    var dataInter = {"data":result.data};
+                    $("#comment-div").html(interText(dataInter));
+                }
+        });
+    }
+
+    $('#submit').click(function () {
+        var content = editor.$txt.html();
+        var data = {
+            'id':id,
+            'ver':ver,
+            'content': content
+        }
+        $.ajax({
+            type:"POST",
+            url:'<{spUrl c=api a=comment}>',
+            data:data,
+            dateType:"json",
+            success:
+                function(result)
+                {
+                    editor.$txt.html('');
+                    $.simplyToast('回复成功!','success');
+                    getComments();
+                }
+        });
+    });
+
+</script>
+
+</html>

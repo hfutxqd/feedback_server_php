@@ -1,0 +1,33 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登陆反馈系统</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/signin.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" method="post" action="<{spUrl c=main a=logingo}>">
+        <h2 class="form-signin-heading">登陆反馈系统</h2>
+        <div class="form-group">
+            <label for="inputUsername" class="sr-only">用户名</label>
+            <input type="text" id="inputUsername" name="user" class="form-control" placeholder="用户名" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="sr-only">密码</label>
+            <input type="password" id="inputPassword" name="pwd" class="form-control" placeholder="密码" required>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block">登陆</button>
+    </form>
+</div>
+</body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</html>

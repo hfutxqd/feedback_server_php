@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<{foreach item=v from=$bug_list}>
+    <lu>
+        <li>ID:<{$v['id']}></li>
+        <li>应用名：<{$v['app_title']}></li>
+        <li>描述：<{$v['description']}></li>
+        <li>E-Mail：<{$v['user_email']}></li>
+        <li>QQ：<{$v['user_qq']}></li>
+        <li>IP：<{$v['user_ip']}></li>
+        <li>包名：<{$v['app_package']}></li>
+        <li>版本：<{$v['app_version']}></li>
+        <li>IMEI：<{$v['device_imei']}></li>
+        <li>型号：<{$v['device_model']}></li>
+        <li>系统版本：<{$v['system_version']}></li>
+        <{if $v['app_attachment'] != null}>
+        <li><a href="<{$v['app_attachment']}>">附件</a></li>
+        <{/if}>
+
+    </lu>
+    <br>
+    评论：
+    <lu>
+        <{foreach item=r from=$reply_list[$v['id']]}>
+            <li><{$r['content']}></li>
+            <li><{$r['time']}></li>
+        <{/foreach}>
+    </lu>
+    <br><br><br>
+<{/foreach}>
+</body>
+</html>
