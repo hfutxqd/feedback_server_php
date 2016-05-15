@@ -34,12 +34,12 @@
                         更改状态 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="btn">确定问题</a></li>
-                        <li><a class="btn">需进一步了解</a></li>
-                        <li><a class="btn">正在解决</a></li>
-                        <li><a class="btn">已经解决</a></li>
-                        <li><a class="btn">暂不解决</a></li>
-                        <li><a class="btn">问题无效</a></li>
+                        <li><a href="<{spUrl c=developer a=update}>&status=2&id=<{$feedback['id']}>" class="btn">确定问题</a></li>
+                        <li><a href="<{spUrl c=developer a=update}>&status=3&id=<{$feedback['id']}>" class="btn">需进一步了解</a></li>
+                        <li><a href="<{spUrl c=developer a=update}>&status=4&id=<{$feedback['id']}>" class="btn">正在解决</a></li>
+                        <li><a href="<{spUrl c=developer a=update}>&status=5&id=<{$feedback['id']}>" class="btn">已经解决</a></li>
+                        <li><a href="<{spUrl c=developer a=update}>&status=6&id=<{$feedback['id']}>" class="btn">暂不解决</a></li>
+                        <li><a href="<{spUrl c=developer a=update}>&status=7&id=<{$feedback['id']}>" class="btn">问题无效</a></li>
                     </ul>
                 </li>
                 <li><a href="<{spUrl c=main a=logout}>">注销</a></li>
@@ -50,7 +50,7 @@
     </div>
 </nav>
 <div class="container" id="contentBox">
-    <ul class="list-group">
+    <ul class="list-group" id="feedback-main">
 
         <li class="list-group-item">
             <div>内容:</div><div><{$feedback['description']}></div>
@@ -62,10 +62,13 @@
             <div>当前状态:</div>
             <div>
                 <{if $feedback['status']==0}>开发者还没有看呢
-                <{elseif $feedback['status']==1}>开发者已经确定
-                <{elseif $feedback['status']==2}>问题正在解决
-                <{elseif $feedback['status']==3}>问题已经解决
-                <{elseif $feedback['status']==4}>问题还需进一步了解
+                <{elseif $feedback['status']==1}>正在定位该问题
+                <{elseif $feedback['status']==2}>开发者已经确定该问题
+                <{elseif $feedback['status']==3}>问题还需进一步了解
+                <{elseif $feedback['status']==4}>问题正在解决
+                <{elseif $feedback['status']==5}>问题已经解决
+                <{elseif $feedback['status']==6}>感谢反馈
+                <{elseif $feedback['status']==7}>未发现该问题
                 <{else}>未知状态
                 <{/if}>
             </div>

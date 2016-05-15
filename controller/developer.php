@@ -1,5 +1,6 @@
 <?php
 import("Tool.php");
+import("Mail.php");
 /**
  * Created by PhpStorm.
  * User: imxqd
@@ -33,8 +34,23 @@ class developer extends spController
         $id = $this->spArgs('id');
     }
 
-    function test()
+    function update()
     {
-        echo Tool::getRandChar(10);
+        $id = $this->spArgs('id');
+        $status = $this->spArgs('status');
+        $feedback = spClass('FeedBack')->find("id=$id");
+
+        spClass('FeedBack')->update("id=$id", 
+            array(
+                'status' => $status
+            ));
+        $args = array(
+            'id' => $_SESSION['fb_id'],
+            'ver' => $_SESSION['fb_ver']
+        );
+        $mail = new Mail();
+        $mail->sendStatusChange($feedback);
+        $this->jump(spUrl('main', 'li', $args));
     }
+
 }

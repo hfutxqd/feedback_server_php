@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.8, created on 2016-05-14 22:32:14
+<?php /* Smarty version Smarty-3.0.8, created on 2016-05-15 11:16:18
          compiled from "F:\Code\www\feedback/tpl\login.html" */ ?>
-<?php /*%%SmartyHeaderCode:4130573736ee7e0f83-87020903%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:34855737ea02952c04-64368593%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '61064e260c3764338948316d2ecd5230c3897686' => 
     array (
       0 => 'F:\\Code\\www\\feedback/tpl\\login.html',
-      1 => 1463236276,
+      1 => 1463239487,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4130573736ee7e0f83-87020903',
+  'nocache_hash' => '34855737ea02952c04-64368593',
   'function' => 
   array (
   ),
@@ -22,7 +22,7 @@ $_smarty_tpl->decodeProperties(array (
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BugMe系统登录</title>
+    <title>登陆反馈系统</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="css/signin.css" rel="stylesheet">

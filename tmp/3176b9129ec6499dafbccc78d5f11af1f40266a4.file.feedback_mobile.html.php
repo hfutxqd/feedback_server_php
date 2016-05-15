@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.8, created on 2016-05-14 22:02:10
+<?php /* Smarty version Smarty-3.0.8, created on 2016-05-15 00:24:07
          compiled from "F:\Code\www\feedback/tpl\feedback_mobile.html" */ ?>
-<?php /*%%SmartyHeaderCode:2548257372fe29c0f67-74827370%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1793257375127de7753-21321876%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3176b9129ec6499dafbccc78d5f11af1f40266a4' => 
     array (
       0 => 'F:\\Code\\www\\feedback/tpl\\feedback_mobile.html',
-      1 => 1463234428,
+      1 => 1463243040,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2548257372fe29c0f67-74827370',
+  'nocache_hash' => '1793257375127de7753-21321876',
   'function' => 
   array (
   ),
@@ -47,6 +47,7 @@ $_smarty_tpl->decodeProperties(array (
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right nav-pills">
                 <li><a href="#" data-toggle="modal" data-target="#user_infor">用户信息</a></li>
+                <?php if ($_smarty_tpl->getVariable('isDev')->value==true){?>
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         更改状态 <span class="caret"></span>
@@ -60,13 +61,13 @@ $_smarty_tpl->decodeProperties(array (
                         <li><a class="btn">问题无效</a></li>
                     </ul>
                 </li>
+                <?php }?>
             </ul>
         </div>
     </div>
 </nav>
 <div class="container" id="contentBox">
-    <ul class="list-group">
-
+    <ul class="list-group" id="feedback-main">
         <li class="list-group-item">
             <div><?php echo $_smarty_tpl->getVariable('feedback')->value['description'];?>
 </div>
@@ -132,7 +133,7 @@ if ($_smarty_tpl->_count($_from) > 0){
         <?php }} ?>
     </div>
     <div>
-        <textarea id="comment_content">请输入内容</textarea>
+        <textarea id="comment_content"></textarea>
         <br/>
         <input type="submit" value="评论" id="submit" class="btn btn-primary btn-lg col-md-1 col-md-push-11">
     </div>
@@ -171,7 +172,7 @@ if ($_smarty_tpl->_count($_from) > 0){
 <script src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="//cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+<script src="//cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
 <script src="//cdn.bootcss.com/dot/1.0.3/doT.min.js"></script>
 <script src='js/mobile/zepto.touch.js'></script>
 <script src='js/mobile/wangEditor-mobile.js'></script>
@@ -241,21 +242,23 @@ if ($_smarty_tpl->_count($_from) > 0){
             data:data,
             dateType:"text",
             success:
-                    function(result)
-                    {
-                        var dataInter = {"data":result.data};
-                        $("#comment-div").html(interText(dataInter));
-                    }
+                function(result)
+                {
+                    var dataInter = {"data":result.data};
+                    $("#comment-div").html(interText(dataInter));
+                }
         });
     }
 
     $('#submit').click(function () {
         var content = editor.$txt.html();
+        
         var data = {
             'id':id,
             'ver':ver,
             'content': content
-        }
+        };
+
         $.ajax({
             type:"POST",
             url:'<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'api','a'=>'comment'),$_smarty_tpl);?>
@@ -263,12 +266,12 @@ if ($_smarty_tpl->_count($_from) > 0){
             data:data,
             dateType:"json",
             success:
-                    function(result)
-                    {
-                        editor.$txt.html('');
-                        $.simplyToast('回复成功!','success');
-                        getComments();
-                    }
+                function(result)
+                {
+                    editor.$txt.html('');
+                    $.simplyToast('回复成功!','success');
+                    getComments();
+                }
         });
     });
 

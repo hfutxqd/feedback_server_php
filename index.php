@@ -29,6 +29,7 @@ $spConfig = array(
         'from_name' => 'feedback',
         'to_mail' => 'tlxqd@qq.com'
     ),
+	'hostname' => 'http://imxqd.xyz',
 	'timezone' => 'PRC',
     'login' => array(
         'user' => 'imxqd',

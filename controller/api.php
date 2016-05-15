@@ -80,20 +80,8 @@ class api extends spController
         if($_SESSION['login'])
         {
             $feedBack = spClass("FeedBack")->find("id=$id");
-            if(Tool::isEmail($feedBack['user_email']))
-            {
-                $args = array(
-                    'id' => $feedBack['id'],
-                    'ver' => $feedBack['ver']
-                );
-                $mail = new Mail();
-                $subject = "开发者评论了您对".$feedBack['app_title']."的反馈";
-                $body = $feedBack['app_title']."的开发者评论了您对".$feedBack['app_title']."的反馈:<br>";
-                $body .= $content;
-                $body .= "若要回复或者想了解详情,请点击以下链接:<br>";
-                $body .= spUrl('main', 'li', $args);
-                $mail->send($feedBack['user_email'], $subject, $body);
-            }
+            $mail = new Mail();
+            $mail->sendDevComment($feedBack, $content);
         }
         echo json_encode($rtn);
     }

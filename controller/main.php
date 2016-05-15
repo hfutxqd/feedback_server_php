@@ -53,8 +53,9 @@ class main extends spController
                 }
                 if($feedback['status'] == 0 && $_SESSION['login'])
                 {
-                    $feedback['status'] == 1;
+                    $feedback['status'] = 1;
                     spClass("FeedBack")->update("id=$id", $feedback);
+                    $mail = new Mail();
                 }
 
                 if(Tool::isMobile())

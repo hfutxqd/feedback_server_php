@@ -47,15 +47,36 @@ body {
 }
 .comment-class{
     background: #ffffff;
+    -moz-box-shadow: 2px 2px 3px #909090;/*firefox*/
+    -webkit-box-shadow: 2px 2px 3px #909090;/*safari或chrome*/
+    box-shadow:2px 2px 3px #909090;/*opera或ie9*/
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
+}
+#feedback-main{
+    -moz-box-shadow: 2px 2px 3px #909090;/*firefox*/
+    -webkit-box-shadow: 2px 2px 3px #909090;/*safari或chrome*/
+    box-shadow:2px 2px 3px #909090;/*opera或ie9*/
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
 }
 #comment_content{
-    height: 200px;
-    -webkit-border-radius:5px;
-    border-radius:5px;
-    -moz-border-radius:5px;
-    border: 1px solid #CCCCCC;
+    height: 100px;
+    background: #EAEAEA;
+    border: 2px solid #dedede;
+    -moz-box-shadow: 2px 2px 3px #909090;/*firefox*/
+    -webkit-box-shadow: 2px 2px 3px #909090;/*safari或chrome*/
+    box-shadow:2px 2px 3px #909090;/*opera或ie9*/
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */   /* W3C syntax */
 }
 .wangEditor-mobile-txt{
-    background: #ffffff;
-    height: 200px;
+    background: #EAEAEA;
+    height: 100px;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
 }

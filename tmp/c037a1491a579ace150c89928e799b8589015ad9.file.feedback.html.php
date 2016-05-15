@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.8, created on 2016-05-14 22:45:12
+<?php /* Smarty version Smarty-3.0.8, created on 2016-05-15 12:16:29
          compiled from "F:\Code\www\feedback/tpl\feedback.html" */ ?>
-<?php /*%%SmartyHeaderCode:24689573739f815cf22-64674654%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:218685737f81d710740-50627926%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'c037a1491a579ace150c89928e799b8589015ad9' => 
     array (
       0 => 'F:\\Code\\www\\feedback/tpl\\feedback.html',
-      1 => 1463237110,
+      1 => 1463285175,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '24689573739f815cf22-64674654',
+  'nocache_hash' => '218685737f81d710740-50627926',
   'function' => 
   array (
   ),
@@ -54,12 +54,24 @@ $_smarty_tpl->decodeProperties(array (
                         更改状态 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="btn">确定问题</a></li>
-                        <li><a class="btn">需进一步了解</a></li>
-                        <li><a class="btn">正在解决</a></li>
-                        <li><a class="btn">已经解决</a></li>
-                        <li><a class="btn">暂不解决</a></li>
-                        <li><a class="btn">问题无效</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'developer','a'=>'update'),$_smarty_tpl);?>
+&status=2&id=<?php echo $_smarty_tpl->getVariable('feedback')->value['id'];?>
+" class="btn">确定问题</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'developer','a'=>'update'),$_smarty_tpl);?>
+&status=3&id=<?php echo $_smarty_tpl->getVariable('feedback')->value['id'];?>
+" class="btn">需进一步了解</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'developer','a'=>'update'),$_smarty_tpl);?>
+&status=4&id=<?php echo $_smarty_tpl->getVariable('feedback')->value['id'];?>
+" class="btn">正在解决</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'developer','a'=>'update'),$_smarty_tpl);?>
+&status=5&id=<?php echo $_smarty_tpl->getVariable('feedback')->value['id'];?>
+" class="btn">已经解决</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'developer','a'=>'update'),$_smarty_tpl);?>
+&status=6&id=<?php echo $_smarty_tpl->getVariable('feedback')->value['id'];?>
+" class="btn">暂不解决</a></li>
+                        <li><a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'developer','a'=>'update'),$_smarty_tpl);?>
+&status=7&id=<?php echo $_smarty_tpl->getVariable('feedback')->value['id'];?>
+" class="btn">问题无效</a></li>
                     </ul>
                 </li>
                 <li><a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['spUrl'][0][0]->__template_spUrl(array('c'=>'main','a'=>'logout'),$_smarty_tpl);?>
@@ -71,7 +83,7 @@ $_smarty_tpl->decodeProperties(array (
     </div>
 </nav>
 <div class="container" id="contentBox">
-    <ul class="list-group">
+    <ul class="list-group" id="feedback-main">
 
         <li class="list-group-item">
             <div>内容:</div><div><?php echo $_smarty_tpl->getVariable('feedback')->value['description'];?>
@@ -85,10 +97,13 @@ $_smarty_tpl->decodeProperties(array (
             <div>当前状态:</div>
             <div>
                 <?php if ($_smarty_tpl->getVariable('feedback')->value['status']==0){?>开发者还没有看呢
-                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==1){?>开发者已经确定
-                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==2){?>问题正在解决
-                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==3){?>问题已经解决
-                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==4){?>问题还需进一步了解
+                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==1){?>正在定位该问题
+                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==2){?>开发者已经确定该问题
+                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==3){?>问题还需进一步了解
+                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==4){?>问题正在解决
+                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==5){?>问题已经解决
+                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==6){?>感谢反馈
+                <?php }elseif($_smarty_tpl->getVariable('feedback')->value['status']==7){?>未发现该问题
                 <?php }else{ ?>未知状态
                 <?php }?>
             </div>
