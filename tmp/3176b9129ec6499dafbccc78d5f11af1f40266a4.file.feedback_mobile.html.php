@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.8, created on 2016-05-15 00:24:07
+<?php /* Smarty version Smarty-3.0.8, created on 2016-05-20 20:14:56
          compiled from "F:\Code\www\feedback/tpl\feedback_mobile.html" */ ?>
-<?php /*%%SmartyHeaderCode:1793257375127de7753-21321876%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:7591573effc0ae00a7-19591588%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3176b9129ec6499dafbccc78d5f11af1f40266a4' => 
     array (
       0 => 'F:\\Code\\www\\feedback/tpl\\feedback_mobile.html',
-      1 => 1463243040,
+      1 => 1463746493,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1793257375127de7753-21321876',
+  'nocache_hash' => '7591573effc0ae00a7-19591588',
   'function' => 
   array (
   ),
@@ -30,7 +30,7 @@ $_smarty_tpl->decodeProperties(array (
     <!--<link href="css/dashboard.css" rel="stylesheet">-->
     <!--<link href="css/bootstrap-select.min.css" rel="stylesheet">-->
     <link rel="stylesheet" type="text/css" href="css/mobile/wangEditor-mobile.css">
-    <link rel="stylesheet" type="text/css" href="css/feedback.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile/feedback.css">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -134,8 +134,7 @@ if ($_smarty_tpl->_count($_from) > 0){
     </div>
     <div>
         <textarea id="comment_content"></textarea>
-        <br/>
-        <input type="submit" value="评论" id="submit" class="btn btn-primary btn-lg col-md-1 col-md-push-11">
+        <button id="submit" class="btn btn-primary">评论</button>
     </div>
 </div>
 
@@ -227,7 +226,6 @@ if ($_smarty_tpl->_count($_from) > 0){
 ";
     var editor = new ___E('comment_content');
     editor.init();
-
     var interText = doT.template($("#comment").text());
 
     function getComments() {
@@ -252,7 +250,7 @@ if ($_smarty_tpl->_count($_from) > 0){
 
     $('#submit').click(function () {
         var content = editor.$txt.html();
-        
+
         var data = {
             'id':id,
             'ver':ver,

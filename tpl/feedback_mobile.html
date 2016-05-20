@@ -10,7 +10,7 @@
     <!--<link href="css/dashboard.css" rel="stylesheet">-->
     <!--<link href="css/bootstrap-select.min.css" rel="stylesheet">-->
     <link rel="stylesheet" type="text/css" href="css/mobile/wangEditor-mobile.css">
-    <link rel="stylesheet" type="text/css" href="css/feedback.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile/feedback.css">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -100,8 +100,7 @@
     </div>
     <div>
         <textarea id="comment_content"></textarea>
-        <br/>
-        <input type="submit" value="评论" id="submit" class="btn btn-primary btn-lg col-md-1 col-md-push-11">
+        <button id="submit" class="btn btn-primary">评论</button>
     </div>
 </div>
 
@@ -186,7 +185,6 @@
     ___E.config.uploadImgUrl = "<{spUrl c=api a=image}>";
     var editor = new ___E('comment_content');
     editor.init();
-
     var interText = doT.template($("#comment").text());
 
     function getComments() {
